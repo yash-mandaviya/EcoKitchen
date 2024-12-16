@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}User History{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-green-50 rounded-xl py-8 px-4 text-black">
+    <h2 class="text-3xl font-semibold text-center mb-8">User History</h2>
+
+    <div class="flex flex-wrap justify-center gap-8">
+        <!-- Activity Logs Card -->
+        <div class="bg-gradient-to-br from-green-500 via-green-400 to-green-300 text-black rounded-xl shadow-lg w-full max-w-sm p-6 hover:shadow-2xl transition-shadow">
+            <h3 class="text-2xl font-semibold mb-4 border-b border-white pb-2">Activity Logs</h3>
+            <ul class="space-y-2">
+                {% for activity in activities %}
+                    <li class="bg-white bg-opacity-20 rounded-lg p-3 shadow-sm">
+                        <span class="block text-sm text-gray-900">{{ activity.timestamp }}</span>
+                        <span class="block font-medium">{{ activity.action }}</span>
+                    </li>
+                {% endfor %}
+                {% if not activities %}
+                    <li class="text-gray-400">No activity logs available.</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- Visit History Card -->
+        <div class="bg-gradient-to-br from-green-500 via-green-400 to-green-300 text-black rounded-xl shadow-lg w-full max-w-sm p-6 hover:shadow-2xl transition-shadow">
+            <h3 class="text-2xl font-semibold mb-4 border-b border-white pb-2">Visit History</h3>
+            <ul class="space-y-2">
+                {% for visit in visit_history %}
+                    <li class="bg-white bg-opacity-20 rounded-lg p-3 shadow-sm">
+                        <span class="block text-sm text-gray-900">{{ visit.timestamp }}</span>
+                        <span class="block font-medium">{{ visit.page }}</span>
+                    </li>
+                {% endfor %}
+                {% if not visit_history %}
+                    <li class="text-gray-400">No visit history available.</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
